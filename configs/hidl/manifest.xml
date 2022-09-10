@@ -26,6 +26,11 @@
             <instance>default</instance>
         </interface>
     </hal>
+    <hal format="aidl">
+        <name>android.hardware.bluetooth.audio</name>
+        <version>2</version>
+        <fqname>IBluetoothAudioProviderFactory/default</fqname>
+    </hal>
     <hal format="hidl">
         <name>android.hardware.camera.provider</name>
         <transport>hwbinder</transport>
@@ -141,6 +146,15 @@
         <version>1.0</version>
         <interface>
             <name>IOffloadControl</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>com.dsi.ant</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IAnt</name>
             <instance>default</instance>
         </interface>
     </hal>
@@ -332,6 +346,15 @@
         <version>1.0</version>
         <interface>
             <name>IFstManager</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.qti.hardware.fm</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IFmHci</name>
             <instance>default</instance>
         </interface>
     </hal>
