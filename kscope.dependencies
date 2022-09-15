@@ -1,16 +1,26 @@
 [
   {
-    "repository": "android_vendor_xiaomi_lisa",
-    "target_path": "vendor/xiaomi/lisa"
+    "remote": "gitlab",
+    "repository": "ItsVixano/android_vendor_xiaomi",
+    "target_path": "vendor/xiaomi"
+    "branch": "lineage-19.1"
   },
   {
+    "remote": "github",
     "repository"   : "android_kernel_xiaomi_lisa",
     "target_path"  : "kernel/xiaomi/lisa"
+    "branch": "thirteen"
   },
   {
-    "remote": "gitlab",
+    "remote": "github",
     "repository": "ALKALiKong/prebuilts_clang_host_linux-x86_clang-r450784b",
     "target_path": "prebuilts/clang/host/linux-x86/clang-r450784b",
     "branch": "master"
+  },
+  {
+    "remote": "github",
+    "repository": "PixelExperience/hardware_xiaomi",  
+    "target_path": "hardware/xiaomi",
+    "branch": "thirteen"
   }
 ]
