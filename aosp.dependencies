@@ -1,0 +1,8 @@
+[
+  {
+    "remote": "github",
+    "repository": "ALKALiKong/prebuilts_clang_host_linux-x86_clang-r450784b",
+    "target_path": "prebuilts/clang/host/linux-x86/clang-r450784b",
+    "branch": "master"
+  }
+]

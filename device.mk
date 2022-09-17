@@ -7,11 +7,8 @@
 # Project ID Quota
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
-# Installs gsi keys into ramdisk, to boot a GSI with verified boot.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
-
 # Enable virtual A/B OTA
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
 
 # Setup dalvik vm configs
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
@@ -61,10 +58,10 @@ PRODUCT_PACKAGES += \
     audio.usb.default
 
 PRODUCT_PACKAGES += \
-    android.hardware.audio@6.0-impl:32 \
-    android.hardware.audio.effect@6.0-impl:32 \
+    android.hardware.audio@7.1-impl:32 \
+    android.hardware.audio.effect@7.0-impl:32 \
     android.hardware.audio.service \
-    android.hardware.soundtrigger@2.2-impl
+    android.hardware.soundtrigger@2.3-impl
 
 PRODUCT_PACKAGES += \
     libbatterylistener \
@@ -109,13 +106,11 @@ PRODUCT_COPY_FILES += \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
-    audio.bluetooth.default \
-    libbthost_if \
-    libbthost_if.vendor
+    audio.bluetooth.default
 
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.0.vendor \
-    android.hardware.bluetooth.audio@2.1-impl \
+    android.hardware.bluetooth.audio-impl \
     com.dsi.ant@1.0.vendor \
     vendor.qti.hardware.bluetooth_audio@2.0.vendor \
     vendor.qti.hardware.bluetooth_audio@2.1.vendor \
@@ -176,13 +171,15 @@ PRODUCT_PACKAGES += \
     vendor.display.config@1.15.vendor \
     vendor.display.config@2.0.vendor
 
+PRODUCT_PACKAGES += \
+    disable_configstore
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/display/display_id_4630946736638489730.xml:$(TARGET_COPY_OUT_VENDOR)/etc/displayconfig/display_id_4630946736638489730.xml \
     $(LOCAL_PATH)/configs/display/snapdragon_color_libs_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/snapdragon_color_libs_config.xml
 
 # DRM
 PRODUCT_PACKAGES += \
-    android.hardware.drm@1.3.vendor \
     android.hardware.drm@1.4-service.clearkey
 
 # Fastbootd
@@ -268,6 +265,9 @@ PRODUCT_PACKAGES += \
     
 # Media
 PRODUCT_PACKAGES += \
+    android.hardware.media.omx@1.0-impl \
+    android.hardware.media.omx@1.0-service \
+    libminijail \
     libavservices_minijail.vendor \
     libcodec2_vndk.vendor \
     libcodec2_hidl@1.1.vendor \
@@ -280,7 +280,8 @@ PRODUCT_PACKAGES += \
     libOmxQcelp13Enc \
     libOmxVdec \
     libOmxVenc \
-    libstagefrighthw
+    libstagefrighthw \
+    libstagefright_omx.vendor
 
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_audio.xml \
@@ -378,7 +379,7 @@ PRODUCT_SOONG_NAMESPACES += \
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-kscope
+    $(LOCAL_PATH)/overlay-arrow
 
 PRODUCT_ENFORCE_RRO_TARGETS += *
 
@@ -389,12 +390,20 @@ PRODUCT_PACKAGES += \
 
 # Telephony
 PRODUCT_PACKAGES += \
+    extphonelib \
+    extphonelib-product \
+    extphonelib.xml \
+    extphonelib_product.xml \
     ims-ext-common \
     ims_ext_common.xml \
     qti-telephony-hidl-wrapper \
+    qti-telephony-hidl-wrapper-prd \
     qti_telephony_hidl_wrapper.xml \
+    qti_telephony_hidl_wrapper_prd.xml \
     qti-telephony-utils \
+    qti-telephony-utils-prd \
     qti_telephony_utils.xml \
+    qti_telephony_utils_prd.xml \
     telephony-ext
 
 PRODUCT_PACKAGES += \
@@ -402,8 +411,8 @@ PRODUCT_PACKAGES += \
     android.hardware.radio.deprecated@1.0.vendor \
     android.hardware.radio@1.6.vendor
 
-PRODUCT_BOOT_JARS += \
-    telephony-ext
+# PRODUCT_BOOT_JARS += \
+#    telephony-ext
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.ims.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.ims.xml \
@@ -434,7 +443,7 @@ PRODUCT_PACKAGES_DEBUG += \
 
 # USB
 PRODUCT_PACKAGES += \
-    android.hardware.usb@1.2-service-qti
+    android.hardware.usb@1.3-service-qti
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.usb.accessory.xml \
@@ -489,5 +498,5 @@ PRODUCT_PACKAGES += \
     libqdMetaData.system \
     libwfdaac_vendor
 
-PRODUCT_BOOT_JARS += \
-    WfdCommon
+# PRODUCT_BOOT_JARS += \
+#    WfdCommon

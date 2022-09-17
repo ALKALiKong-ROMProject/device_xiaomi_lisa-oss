@@ -61,7 +61,6 @@ USE_CUSTOM_AUDIO_POLICY := 1
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth/include
-TARGET_USE_QTI_BT_STACK := true
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := lahaina
@@ -80,7 +79,6 @@ TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/configs/config.fs
 
 # HIDL
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := $(DEVICE_PATH)/configs/hidl/framework_compatibility_matrix.xml
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += vendor/kscope/target/config/vintf/device_framework_matrix.xml
 DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/configs/hidl/manifest.xml
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/configs/hidl/c2_manifest_vendor.xml
 DEVICE_MATRIX_FILE := $(DEVICE_PATH)/configs/hidl/compatibility_matrix.xml
@@ -101,8 +99,9 @@ TARGET_KERNEL_ADDITIONAL_FLAGS := DTC_EXT=$(shell pwd)/prebuilts/misc/linux-x86/
 TARGET_KERNEL_CLANG_COMPILE := true
 TARGET_KERNEL_CONFIG := lisa_defconfig
 TARGET_KERNEL_SOURCE := kernel/xiaomi/lisa
-TARGET_KERNEL_CLANG_VERSION := r450784b
+TARGET_KERNEL_CLANG_VERSION := r450784d
 BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200n8 androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.memcg=1 lpm_levels.sleep_disabled=1 msm_rtb.filter=0x237 service_locator.enable=1 androidboot.usbcontroller=a600000.dwc3 swiotlb=0 loop.max_part=7 cgroup.memory=nokmem,nosocket pcie_ports=compat iptable_raw.raw_before_defrag=1 ip6table_raw.raw_before_defrag=1
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 
 # Kernel modules
 BOOT_KERNEL_MODULES := \
@@ -160,10 +159,10 @@ TARGET_ODM_PROP += $(DEVICE_PATH)/odm.prop
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 TARGET_SYSTEM_EXT_PROP += $(DEVICE_PATH)/system_ext.prop
 TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
+TARGET_PRODUCT_PROP += $(DEVICE_PATH)/product.prop
 
 # QCOM
 BOARD_USES_QCOM_HARDWARE := true
-TARGET_FWK_SUPPORTS_FULL_VALUEADDS := true
 
 # Recovery
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
@@ -185,6 +184,8 @@ TARGET_SCREEN_DENSITY := 440
 VENDOR_SECURITY_PATCH := 2022-02-01
 
 # Sepolicy
+SELINUX_IGNORE_NEVERALLOWS := true
+
 include device/qcom/sepolicy_vndr/SEPolicy.mk
 
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
