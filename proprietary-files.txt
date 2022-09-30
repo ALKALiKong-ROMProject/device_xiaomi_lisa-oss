@@ -156,9 +156,11 @@ vendor/lib64/hw/com.dsi.ant@1.0-impl.so
 # Audio firmware
 vendor/firmware/tfa98xx.cnt
 
-# Audio FX modules
+# Audio FX modules (System)
 system_ext/etc/permissions/audiosphere.xml
 system_ext/framework/audiosphere.jar
+
+# Audio FX modules (Vendor)
 vendor/lib/soundfx/libasphere.so
 vendor/lib/soundfx/libshoebox.so
 
@@ -825,7 +827,7 @@ vendor/lib64/libsnapdragoncolor-manager.so
 vendor/lib64/libsnapdragoncolor-qdcm.so
 vendor/lib64/libtinyxml2_1.so
 
-# DPM
+# DPM (System)
 framework/tcmclient.jar
 system_ext/bin/dpmd
 system_ext/etc/dpm/dpm.conf
@@ -840,6 +842,8 @@ system_ext/lib64/libdpmfdmgr.so
 system_ext/lib64/libdpmframework.so
 system_ext/lib64/libdpmtcm.so
 -system_ext/priv-app/dpmserviceapp/dpmserviceapp.apk
+
+# DPM (Vendor)
 vendor/bin/dpmQmiMgr
 vendor/etc/init/dpmQmiMgr.rc
 vendor/lib64/com.qualcomm.qti.dpm.api@1.0.so
@@ -1008,13 +1012,15 @@ vendor/etc/init/android.hardware.health@2.1-service.rc
 vendor/lib64/hw/android.hardware.health@2.0-impl-2.1-qti.so
 vendor/lib/hw/android.hardware.health@2.0-impl-2.1-qti.so
 
-# Hotword Enrollment - from missi-user-12-SKQ1.211006.001-V13.0.4.0.SKOMIXM-release-keys
--product/priv-app/HotwordEnrollmentOKGoogleHEXAGON/HotwordEnrollmentOKGoogleHEXAGON.apk|1f9513ba807bced528203f829eb9a8249e915d38
--product/priv-app/HotwordEnrollmentXGoogleHEXAGON/HotwordEnrollmentXGoogleHEXAGON.apk|b53e90faf861f36c3b71f7f15f54960b1e9d6313
+# Hotword Enrollment (System) - from missi-user-12-SKQ1.211006.001-V13.0.4.0.SKOMIXM-release-keys
 -system_ext/framework/com.android.hotwordenrollment.common.util.jar|c764b636e0be426a66be09dd08ab9c1921327ef0
 system_ext/etc/permissions/com.android.hotwordenrollment.common.util.xml|563a58554d9c0dd0608552b644fbf74519a447bb
 
-# IMS - from LA.UM.9.14.r1-19300.01-LAHAINA.QSSI12.0
+# Hotword Enrollment (Vendor) - from missi-user-12-SKQ1.211006.001-V13.0.4.0.SKOMIXM-release-keys
+-product/priv-app/HotwordEnrollmentOKGoogleHEXAGON/HotwordEnrollmentOKGoogleHEXAGON.apk|1f9513ba807bced528203f829eb9a8249e915d38
+-product/priv-app/HotwordEnrollmentXGoogleHEXAGON/HotwordEnrollmentXGoogleHEXAGON.apk|b53e90faf861f36c3b71f7f15f54960b1e9d6313
+
+# IMS (System) - from LA.QSSI.12.0.r1-05800.02-qssi.0 
 system_ext/lib64/libdiag_system.so|35bace09ba74af348b9530fb02cf7088c90a44fd
 system_ext/lib64/libimscamera_jni.so|ff3d65093f5bf19fba95798b0a121ee510b0f72e
 system_ext/lib64/libimsmedia_jni.so|9f192af40439abb04d5d5f0f3de5b772c9381114
@@ -1025,6 +1031,8 @@ system_ext/lib64/lib-imsvtutils.so|9e45b76b14600df92782e6c8213af0dcddbe80be
 system_ext/lib64/vendor.qti.diaghal@1.0.so|0158bec299e6bef47604a946145ab321184b2c24
 system_ext/lib64/vendor.qti.imsrtpservice@3.0.so|0c11ff5a7a671073ee40e17d46aa8b7acbf1dc0a
 -system_ext/priv-app/ims/ims.apk|ef0a60f4fa559b5638cc46b0b7dce74642796100
+
+# IMS (Vendor) - from LA.UM.9.14.r1-19300.01-LAHAINA.QSSI12.0
 vendor/bin/imsdaemon|fb37822b771e79a581f2b3f9ac5170f8418b48f6
 vendor/bin/ims_rtp_daemon|2e5d5dfbf310db938f642a6155ee7893a87dda56
 vendor/etc/init/imsdaemon.rc|18bbe0185cece34299e92a5f4f309b59ea93d684
@@ -1368,7 +1376,7 @@ vendor/lib/libqmi_legacy.so
 vendor/lib/libqmiservices.so
 vendor/lib/libqmi.so
 
-# RIL
+# RIL (System)
 -system_ext/app/QtiTelephonyService/QtiTelephonyService.apk
 system_ext/etc/permissions/qcrilhook.xml
 system_ext/etc/permissions/qti_libpermissions.xml
@@ -1376,6 +1384,8 @@ system_ext/etc/permissions/qti_permissions.xml
 system_ext/etc/permissions/telephony_system-ext_privapp-permissions-qti.xml
 system_ext/framework/qcrilhook.jar
 -system_ext/priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
+
+# RIL (Vendor)
 vendor/bin/adpl
 vendor/bin/ATFWD-daemon
 vendor/bin/hw/qcrilNrd
@@ -1686,7 +1696,7 @@ vendor/lib/vendor.qti.hardware.vpp@1.2.so
 vendor/lib/vendor.qti.hardware.vpp@1.3.so
 vendor/lib/vendor.qti.hardware.vpp@2.0.so
 
-# WiFi Display - from LA.UM.9.14.r1-19300.01-LAHAINA.QSSI12.0
+# WiFi Display (System) - from LA.QSSI.12.0.r1-05800.02-qssi.0
 -system/framework/WfdCommon.jar|9f431b56d7f38c71089333008695dd5f717e5034
 system_ext/bin/wfdservice64|dfba81ff32b92652dfca237b590dd104dc7ced34
 system_ext/etc/init/wfdservice.rc|907def8565d8f91f531ca7dfad880af05d540b0c
@@ -1714,6 +1724,8 @@ system_ext/lib64/libwfduibcsrcinterface.so|aef1b83ef458c79cd345031654d38bc8897c9
 system_ext/lib64/libwfduibcsrc.so|03e2b139fb399aa5beb1caaa4df0f5c7eb675a9d
 system_ext/lib64/vendor.qti.hardware.wifidisplaysession@1.0.so|b987719b34b788eee534c70c404ed2fd90bd6b81
 -system_ext/priv-app/WfdService/WfdService.apk|622836ab49bc66bf31b83d4855198f87115dc106
+
+# WiFi Display (Vendor) - from LA.UM.9.14.r1-19300.01-LAHAINA.QSSI12.0
 vendor/bin/wfdvndservice|eb9e344996851e1e9e8ce5a4d791ad66bb59b4f3
 vendor/bin/wifidisplayhalservice|4b599b02c113834ed92a504d722379f0aaaf4e88
 vendor/etc/init/com.qualcomm.qti.wifidisplayhal@1.0-service.rc|576ce4393b7746b77a230745aa9e9ee3bd31b17d
