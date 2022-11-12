@@ -5,9 +5,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/kscope_lisa.mk
+    $(LOCAL_DIR)/nyanpasu_lisa.mk
 
 COMMON_LUNCH_CHOICES := \
-    kscope_lisa-user \
-    kscope_lisa-userdebug \
-    kscope_lisa-eng
+    nyanpasu_lisa-user \
+    nyanpasu_lisa-userdebug \
+    nyanpasu_lisa-eng
