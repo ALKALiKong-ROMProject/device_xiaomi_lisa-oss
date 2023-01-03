@@ -2,5 +2,4 @@
 vendor.media.target_variant=_yupik_v1
 
 # WFD
-persist.debug.wfd.enable=1
 vendor.wfdservice64=enable

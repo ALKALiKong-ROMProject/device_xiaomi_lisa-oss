@@ -4,7 +4,6 @@ vendor.bluetooth.soc=hastings
 
 # Graphics
 debug.sf.disable_backpressure=1
-debug.sf.enable_hwc_vds=1
 
 # LMKD
 ro.config.low_ram=false

@@ -341,7 +341,8 @@ TARGET_COMMON_QTI_COMPONENTS := \
     bt \
     display \
     perf \
-    telephony
+    telephony \
+    wfd
 
 # Recovery
 PRODUCT_PACKAGES += \
@@ -448,10 +449,5 @@ PRODUCT_PACKAGES += \
     libdisplayconfig.qti.vendor \
     libdisplayconfig.system \
     libdisplayconfig.system.qti \
-    libnl \
     libqdMetaData \
-    libqdMetaData.system \
-    libwfdaac_vendor
-
-PRODUCT_BOOT_JARS += \
-    WfdCommon
+    libqdMetaData.system
