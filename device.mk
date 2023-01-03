@@ -193,13 +193,7 @@ PRODUCT_COPY_FILES += \
 
 # GPS
 PRODUCT_PACKAGES += \
-    android.hardware.gnss@2.1.vendor
-
-PRODUCT_PACKAGES += \
     libsensorndkbridge
-
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.location.gps.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.location.gps.xml
 
 # Graphics
 PRODUCT_COPY_FILES += \
@@ -340,6 +334,7 @@ TARGET_COMMON_QTI_COMPONENTS := \
     av \
     bt \
     display \
+    gps \
     perf \
     telephony \
     wfd

@@ -87,6 +87,9 @@ DEVICE_MATRIX_FILE := $(DEVICE_PATH)/configs/hidl/compatibility_matrix.xml
 TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_lisa
 TARGET_RECOVERY_DEVICE_MODULES := libinit_lisa
 
+# GPS
+LOC_HIDL_VERSION := 4.0
+
 # Kernel
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_IMAGE_NAME := Image
