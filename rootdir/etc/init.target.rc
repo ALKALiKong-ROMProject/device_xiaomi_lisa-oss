@@ -144,6 +144,28 @@ on boot
     # Set disp_param permissions
     chown system system /sys/devices/virtual/mi_display/disp_feature/disp-DSI-0/disp_param
 
+    #Display feature sysfs node
+    chown system system /sys/class/mi_display/disp-DSI-0/disp_param
+    chmod 0664 /sys/class/mi_display/disp-DSI-0/disp_param
+    chown system system /sys/class/mi_display/disp-DSI-0/mipi_rw
+    chmod 0664 /sys/class/mi_display/disp-DSI-0/mipi_rw
+    chown system system /sys/class/mi_display/disp-DSI-0/panel_info
+    chmod 0444 /sys/class/mi_display/disp-DSI-0/panel_info
+    chown system system /sys/class/mi_display/disp-DSI-0/wp_info
+    chmod 0444 /sys/class/mi_display/disp-DSI-0/wp_info
+    chown system system /sys/class/mi_display/disp-DSI-0/dynamic_fps
+    chmod 0444 /sys/class/mi_display/disp-DSI-0/dynamic_fps
+    chown system system /sys/class/mi_display/disp-DSI-0/doze_brightness
+    chmod 0664 /sys/class/mi_display/disp-DSI-0/doze_brightness
+    chown system system /sys/class/mi_display/disp-DSI-0/disp_count
+    chmod 0664 /sys/class/mi_display/disp-DSI-0/disp_count
+    chown system system /sys/class/mi_display/disp-DSI-1/disp_count
+    chmod 0664 /sys/class/mi_display/disp-DSI-1/disp_count
+    chown system system /sys/class/mi_display/disp-DSI-0/brightness_clone
+    chmod 0664 /sys/class/mi_display/disp-DSI-0/brightness_clone
+    chown system system /sys/class/mi_display/disp-DSI-1/dynamic_fps
+    chmod 0444 /sys/class/mi_display/disp-DSI-1/dynamic_fps
+
 on init && property:ro.boot.mode=charger
     mount_all /vendor/etc/charger_fstab.qcom --early
     write /sys/kernel/boot_adsp/boot 1
