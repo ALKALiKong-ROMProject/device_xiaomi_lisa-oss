@@ -23,7 +23,7 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 $(call inherit-product, vendor/xiaomi/lisa/lisa-vendor.mk)
 
 # Call the MiuiCamera setup
-$(call inherit-product-if-exists, vendor/xiaomi/lisa-miuicamera/products/miuicamera.mk)
+$(call inherit-product-if-exists, device/xiaomi/lisa-miuicamera/config.mk)
 
 # A/B
 AB_OTA_POSTINSTALL_CONFIG += \

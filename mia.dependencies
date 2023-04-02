@@ -8,9 +8,15 @@
     "target_path"  : "kernel/xiaomi/lisa"
   },
   {
-    "repository": "ALKALiKong/vendor_xiaomi_lisa-miuicamera",
+    "repository": "ghostrider-reborn/android_vendor_xiaomi_lisa-miuicamera",
     "target_path": "vendor/xiaomi/lisa-miuicamera",
-    "remote": "gitlab",
-    "branch": "takina"
+    "remote": "github",
+    "branch": "topaz"
+  },
+  {
+    "repository": "ghostrider-reborn/android_device_xiaomi_lisa-miuicamera",
+    "target_path": "device/xiaomi/lisa-miuicamera",
+    "remote": "github",
+    "branch": "topaz"
   }
 ]
