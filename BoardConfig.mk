@@ -63,18 +63,12 @@ TARGET_NO_BOOTLOADER := true
 # Camera
 TARGET_USES_QTI_CAMERA_DEVICE := true
 
-# Display
-TARGET_USES_DISPLAY_RENDER_INTENTS := true
-TARGET_USES_GRALLOC4 := true
-TARGET_USES_HWC2 := true
-
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/configs/config.fs
 
 # HIDL
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := $(DEVICE_PATH)/configs/hidl/framework_compatibility_matrix.xml
 DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/configs/hidl/manifest.xml
-DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/configs/hidl/c2_manifest_vendor.xml
 DEVICE_MATRIX_FILE := $(DEVICE_PATH)/configs/hidl/compatibility_matrix.xml
 
 # Init
@@ -82,31 +76,101 @@ TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_lisa
 TARGET_RECOVERY_DEVICE_MODULES := libinit_lisa
 
 # Kernel
-BOARD_KERNEL_BASE := 0x00000000
-BOARD_KERNEL_IMAGE_NAME := Image
-BOARD_KERNEL_PAGESIZE := 4096
-BOARD_KERNEL_SEPARATED_DTBO := true
 BOARD_BOOT_HEADER_VERSION := 3
-BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
-KERNEL_LD := LD=ld.lld
-TARGET_KERNEL_ADDITIONAL_FLAGS := DTC_EXT=$(shell pwd)/prebuilts/misc/linux-x86/dtc/dtc LLVM=1 TARGET_PRODUCT=$(PRODUCT_DEVICE)
-TARGET_KERNEL_CLANG_COMPILE := true
-TARGET_KERNEL_CONFIG := lisa_defconfig
-TARGET_KERNEL_SOURCE := kernel/xiaomi/lisa
-TARGET_KERNEL_CLANG_VERSION := r450784d
-BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200n8 androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.memcg=1 lpm_levels.sleep_disabled=1 msm_rtb.filter=0x237 service_locator.enable=1 androidboot.usbcontroller=a600000.dwc3 swiotlb=0 loop.max_part=7 cgroup.memory=nokmem,nosocket pcie_ports=compat iptable_raw.raw_before_defrag=1 ip6table_raw.raw_before_defrag=1
+BOARD_KERNEL_BASE := 0x00000000
+BOARD_KERNEL_OFFSET := 0x00008000
+BOARD_KERNEL_PAGESIZE := 4096
+BOARD_KERNEL_TAGS_OFFSET := 0x00000100
+BOARD_RAMDISK_OFFSET := 0x01000000
 BOARD_RAMDISK_USE_LZ4 := true
 
-# Kernel modules
-BOOT_KERNEL_MODULES := \
-    hwid.ko \
-    goodix_core.ko \
-    xiaomi_touch.ko
+BOARD_KERNEL_CMDLINE := \
+    androidboot.console=ttyMSM0 \
+    androidboot.hardware=qcom \
+    androidboot.init_fatal_reboot_target=recovery \
+    androidboot.memcg=1 \
+    androidboot.usbcontroller=a600000.dwc3 \
+    cgroup.memory=nokmem,nosocket \
+    console=ttyMSM0,115200n8 \
+    ip6table_raw.raw_before_defrag=1 \
+    iptable_raw.raw_before_defrag=1 \
+    loop.max_part=7 \
+    lpm_levels.sleep_disabled=1 \
+    msm_rtb.filter=0x237 \
+    pcie_ports=compat \
+    service_locator.enable=1 \
+    swiotlb=0
 
-BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(BOOT_KERNEL_MODULES)
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 
-# Media
-TARGET_USES_ION := true
+BOARD_INCLUDE_DTB_IN_BOOTIMG := true
+BOARD_KERNEL_SEPARATED_DTBO := true
+BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
+
+KERNEL_DEFCONFIG := lisa_defconfig
+TARGET_KERNEL_SOURCE := kernel/xiaomi/lisa
+
+BOARD_VENDOR_KERNEL_MODULES := \
+    $(KERNEL_MODULES_OUT)/adsp_loader_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/apr_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/bolero_cdc_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/bt_fm_slim.ko \
+    $(KERNEL_MODULES_OUT)/btpower.ko \
+    $(KERNEL_MODULES_OUT)/camera.ko \
+    $(KERNEL_MODULES_OUT)/device_management_service_v01.ko \
+    $(KERNEL_MODULES_OUT)/fpc1020_tee.ko \
+    $(KERNEL_MODULES_OUT)/goodix_core.ko \
+    $(KERNEL_MODULES_OUT)/goodix_ts_gesture.ko \
+    $(KERNEL_MODULES_OUT)/goodix_ts_tools.ko \
+    $(KERNEL_MODULES_OUT)/hdmi_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/hwid.ko \
+    $(KERNEL_MODULES_OUT)/icnss2.ko \
+    $(KERNEL_MODULES_OUT)/ir-spi.ko \
+    $(KERNEL_MODULES_OUT)/leds-qti-flash.ko \
+    $(KERNEL_MODULES_OUT)/llcc_perfmon.ko \
+    $(KERNEL_MODULES_OUT)/machine_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/mbhc_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/mi_thermal_interface.ko \
+    $(KERNEL_MODULES_OUT)/native_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/nfc_i2c.ko \
+    $(KERNEL_MODULES_OUT)/pinctrl_lpi_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/pinctrl_wcd_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/platform_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/q6_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/q6_notifier_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/q6_pdr_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/qti_battery_charger_main.ko \
+    $(KERNEL_MODULES_OUT)/radio-i2c-rtc6226-qca.ko \
+    $(KERNEL_MODULES_OUT)/rmnet_core.ko \
+    $(KERNEL_MODULES_OUT)/rmnet_ctl.ko \
+    $(KERNEL_MODULES_OUT)/rmnet_offload.ko \
+    $(KERNEL_MODULES_OUT)/rmnet_shs.ko \
+    $(KERNEL_MODULES_OUT)/rx_macro_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/slimbus-ngd.ko \
+    $(KERNEL_MODULES_OUT)/slimbus.ko \
+    $(KERNEL_MODULES_OUT)/snd_event_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/stub_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/swr_ctrl_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/swr_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/swr_dmic_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/swr_haptics_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/tfa98xx_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/tx_macro_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/us_prox_iio.ko \
+    $(KERNEL_MODULES_OUT)/usb_f_dtp.ko \
+    $(KERNEL_MODULES_OUT)/usbdtp.ko \
+    $(KERNEL_MODULES_OUT)/va_macro_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/wcd937x_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/wcd937x_slave_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/wcd938x_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/wcd938x_slave_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/wcd9xxx_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/wcd_core_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/wlan.ko \
+    $(KERNEL_MODULES_OUT)/wlan_firmware_service_v01.ko \
+    $(KERNEL_MODULES_OUT)/wsa883x_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/wsa_macro_dlkm.ko \
+    $(KERNEL_MODULES_OUT)/xiaomi_touch.ko
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 201326592
@@ -149,27 +213,24 @@ TARGET_BOARD_PLATFORM := lahaina
 TARGET_POWERHAL_MODE_EXT := $(DEVICE_PATH)/power/power-mode.cpp
 
 # Properties
-TARGET_ODM_PROP += $(DEVICE_PATH)/odm.prop
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 TARGET_SYSTEM_EXT_PROP += $(DEVICE_PATH)/system_ext.prop
 TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
-TARGET_PRODUCT_PROP += $(DEVICE_PATH)/product.prop
 
 # QCOM
 BOARD_USES_QCOM_HARDWARE := true
 
 # Recovery
-BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_INCLUDE_RECOVERY_DTBO := true
-BOARD_MOVE_RECOVERY_RESOURCES_TO_VENDOR_BOOT := true
-TARGET_NO_RECOVERY := true
+BOARD_USES_RECOVERY_AS_BOOT := true
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
-TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
-TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+TARGET_RECOVERY_UI_MARGIN_HEIGHT := 104
 TARGET_USERIMAGES_USE_F2FS := true
 
-# RIL
-ENABLE_VENDOR_RIL_SERVICE := true
+SOONG_CONFIG_NAMESPACES += ufsbsg
+SOONG_CONFIG_ufsbsg += ufsframework
+SOONG_CONFIG_ufsbsg_ufsframework := bsg
 
 # Screen density
 TARGET_SCREEN_DENSITY := 440
@@ -178,8 +239,6 @@ TARGET_SCREEN_DENSITY := 440
 VENDOR_SECURITY_PATCH := 2023-06-01
 
 # Sepolicy
-include device/qcom/sepolicy_vndr-legacy-um/SEPolicy.mk
-
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/public
 BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
@@ -199,17 +258,5 @@ BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 1
 BOARD_MOVE_GSI_AVB_KEYS_TO_VENDOR_BOOT := true
 
 # WiFi
-BOARD_WLAN_DEVICE := qcwcn
-BOARD_HOSTAPD_DRIVER := NL80211
-BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
-BOARD_WPA_SUPPLICANT_DRIVER := NL80211
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
-QC_WIFI_HIDL_FEATURE_DUAL_AP := true
-WIFI_DRIVER_DEFAULT := wlan
-WIFI_DRIVER_STATE_CTRL_PARAM := "/dev/wlan"
-WIFI_DRIVER_STATE_OFF := "OFF"
-WIFI_DRIVER_STATE_ON := "ON"
-WIFI_HIDL_FEATURE_AWARE := true
-WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
-WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
-WPA_SUPPLICANT_VERSION := VER_0_8_X
+CONFIG_ACS := true
+CONFIG_IEEE80211AX := true

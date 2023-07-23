@@ -17,6 +17,13 @@
             <instance>default</instance>
         </interface>
     </hal>
+    <hal format="aidl" optional="true">
+        <name>android.hardware.drm</name>
+        <interface>
+            <name>IDrmFactory</name>
+            <instance>clearkey</instance>
+        </interface>
+    </hal>
     <hal format="hidl" optional="true">
         <name>android.hardware.gnss</name>
         <version>1.0-1</version>
@@ -54,6 +61,14 @@
             <instance>default</instance>
         </interface>
     </hal>
+    <hal format="aidl" optional="true">
+        <name>android.hardware.power</name>
+        <interface>
+            <name>IPower</name>
+            <version>3</version>
+            <instance>default</instance>
+        </interface>
+    </hal>
     <hal format="hidl" optional="true">
         <name>android.hardware.radio</name>
         <version>1.0-5</version>
@@ -73,6 +88,37 @@
         <version>1.0-1</version>
         <interface>
             <name>IRadioConfig</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>android.hardware.vibrator</name>
+        <interface>
+            <name>IVibrator</name>
+            <version>2</version>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
+        <name>android.hardware.wifi</name>
+        <version>1.0-6</version>
+        <interface>
+            <name>IWifi</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>android.hardware.wifi.hostapd</name>
+        <interface>
+            <name>IHostapd</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>android.hardware.wifi.supplicant</name>
+        <interface>
+            <name>ISupplicant</name>
+            <version>1</version>
             <instance>default</instance>
         </interface>
     </hal>
@@ -740,12 +786,20 @@
             <instance>wigighostapd</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="aidl" optional="true">
         <name>vendor.qti.hardware.wifi.supplicant</name>
-        <version>2.0-3</version>
         <interface>
             <name>ISupplicantVendor</name>
+            <version>1</version>
             <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
+        <name>vendor.qti.hardware.wifi.wificfr</name>
+        <version>1.0</version>
+        <interface>
+            <name>IWificfr</name>
+            <instance>wificfr</instance>
         </interface>
     </hal>
     <hal format="hidl" optional="true">
